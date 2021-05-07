@@ -1,4 +1,4 @@
-button_details = ForegroundFactory.new(is_dark_mode)
+button_details = ForegroundFactory.new(label_text, x, y, foreground_color, is_dark_mode)
 
 def draw_button(button_details)
   paint(button_details, button_details.color_id)
@@ -7,9 +7,9 @@ end
 class ForegroundFactory
   def new(is_dark_mode)
     if is_dark_mode
-      DarkForeground.new
+      DarkForeground.new(label_text, x, y, foreground_color)
     else
-      LightForeground.new
+      LightForeground.new(label_text, x, y, foreground_color)
     end
   end
 end
