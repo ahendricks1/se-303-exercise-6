@@ -8,7 +8,17 @@ def draw_button(label_text, x, y, foreground_color, is_dark_mode)
   end
 end
 
-class DarkForeground
+class ForegroundFactory
+  def new(is_dark_mode)
+    if is_dark_mode
+      DarkForeground.new
+    else
+      LightForeground.new
+    end
+  end
+end
+
+class DarkForeground < ForegroundFactory
   def initialize(label_text, x, y, foreground_color)
     @label_text = label_text
     @x = x
@@ -21,7 +31,7 @@ class DarkForeground
   end
 end
 
-class LightForeground
+class LightForeground < ForegroundFactory
   def initialize(label_text, x, y, foreground_color)
     @label_text = label_text
     @x = x
