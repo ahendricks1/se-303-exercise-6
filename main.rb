@@ -5,7 +5,13 @@ def draw_button(button_details)
 end
 
 class ForegroundFactory
-  def new(is_dark_mode)
+  def initialize(label_text, x, y, foreground_color, is_dark_mode)
+    @label_text = label_text
+    @x = x
+    @y = y
+    @foreground_color = foreground_color + 10
+    @is_dark_mode = is_dark_mode
+
     if is_dark_mode
       DarkForeground.new(label_text, x, y, foreground_color)
     else
@@ -16,10 +22,7 @@ end
 
 class DarkForeground < ForegroundFactory
   def initialize(label_text, x, y, foreground_color)
-    @label_text = label_text
-    @x = x
-    @y = y
-    @foreground_color = foreground_color - 10
+    super(label_text, x, y, foreground_color - 10)
   end
 
   def color_id
@@ -29,10 +32,7 @@ end
 
 class LightForeground < ForegroundFactory
   def initialize(label_text, x, y, foreground_color)
-    @label_text = label_text
-    @x = x
-    @y = y
-    @foreground_color = foreground_color + 10
+    super(label_text, x, y, foreground_color + 10)
   end
 
   def color_id
